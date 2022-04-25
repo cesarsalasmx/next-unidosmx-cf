@@ -1,0 +1,49 @@
+$thm-font: "Quicksand", sans-serif;
+$thm-base: #fd632f;
+$thm-base-rgb: #BB632F;
+$thm-primary: #4550f8;
+$thm-primary-rgb: #4550F8;
+$thm-black: #252c4b;
+$thm-black-rgb: #252C4B;
+$thm-gray: #f6f6fb;
+$special-font-smb: "Quicksand", sans-serif;
+$heading-font:  "Quicksand", sans-serif;
+body {
+	font-family: $thm-font;
+	color: #737789;
+	font-size: 18px;
+	line-height: 36px;
+	font-weight: 500;
+}
+
+a {
+	&:active {
+		text-decoration: none;
+	}
+	&:hover {
+		text-decoration: none;
+	}
+	&:focus {
+		text-decoration: none;
+	}
+	&:visited {
+		text-decoration: none;
+	}
+}
+[role="button"] {
+	-webkit-appearance: none;
+	appearance: none;
+	outline: none;
+}
+button {
+	-webkit-appearance: none;
+	appearance: none;
+	outline: none;
+}
+.page-wrapper {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	min-width: 300px;
+	overflow: hidden;
+}

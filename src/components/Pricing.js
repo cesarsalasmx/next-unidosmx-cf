@@ -1,0 +1,196 @@
+import React, { useState } from "react";
+import { Container, Row, Col } from "reactstrap";
+import BlockTitle from "./BlockTitle";
+import Link from "next/link";
+
+const Pricing = (props) => {
+  const [plan, setPlan] = useState(false);
+  return (
+    <section className="pricing-one" id="pricing">
+      <Container>
+        <BlockTitle
+          textAlign="center"
+          paraText="Pricing Tables"
+          titleText={`Choose Pricing Plans Which \n Suits Your Needs`}
+        />
+        <ul
+          className="list-inline text-center switch-toggler-list"
+          id="switch-toggle-tab"
+        >
+          <li className={`month ${plan === false ? "active" : ""}`}>
+            <Link
+              href="#none"
+              onClick={(e) => {
+                e.preventDefault();
+                setPlan(false);
+              }}
+            >
+            <a>Monthly</a>
+            </Link>
+          </li>
+          <li>
+            <div
+              role="button"
+              tabIndex="0"
+              onClick={(e) => {
+                e.preventDefault();
+                setPlan(!plan);
+              }}
+              onKeyDown={(e) => {
+                e.preventDefault();
+                setPlan(!plan);
+              }}
+              className={`switch ${plan === true ? "off" : "on"}`}
+            >
+              <span className="slider round"></span>
+            </div>
+          </li>
+          <li className={`year ${plan === true ? "active" : ""}`}>
+            <Link
+              href="#none"
+              onClick={(e) => {
+                e.preventDefault();
+                setPlan(true);
+              }}
+            >
+            <a>Annualy</a>
+            </Link>
+          </li>
+        </ul>
+        {plan === true ? (
+          <div id="yearly">
+            <Row>
+              <Col lg={4}>
+                <div className="pricing-one__single">
+                  <div className="pricing-one__circle"></div>
+                  <div className="pricing-one__inner">
+                    <p>Basic Pack</p>
+                    <h3>$59.00</h3>
+                    <ul className="list-unstyled pricing-one__list">
+                      <li>Extra features</li>
+                      <li>Lifetime free support</li>
+                      <li>Upgrate options</li>
+                      <li>Full access</li>
+                    </ul>
+                    <Link href="#none" className="thm-btn pricing-one__btn">
+                      <a><span>Choose Plan</span></a>
+                    </Link>
+
+                    <span>No hidden charges!</span>
+                  </div>
+                </div>
+              </Col>
+              <Col lg={4}>
+                <div className="pricing-one__single">
+                  <div className="pricing-one__circle"></div>
+                  <div className="pricing-one__inner">
+                    <p>Standard Pack</p>
+                    <h3>$79.00</h3>
+                    <ul className="list-unstyled pricing-one__list">
+                      <li>Extra features</li>
+                      <li>Lifetime free support</li>
+                      <li>Upgrate options</li>
+                      <li>Full access</li>
+                    </ul>
+                    <Link href="#none" className="thm-btn pricing-one__btn">
+                      <a><span>Choose Plan</span></a>
+                    </Link>
+
+                    <span>No hidden charges!</span>
+                  </div>
+                </div>
+              </Col>
+              <Col lg={4}>
+                <div className="pricing-one__single">
+                  <div className="pricing-one__circle"></div>
+                  <div className="pricing-one__inner">
+                    <p>Ultimate Pack</p>
+                    <h3>$99.00</h3>
+                    <ul className="list-unstyled pricing-one__list">
+                      <li>Extra features</li>
+                      <li>Lifetime free support</li>
+                      <li>Upgrate options</li>
+                      <li>Full access</li>
+                    </ul>
+                    <Link href="#none" className="thm-btn pricing-one__btn">
+                      <a><span>Choose Plan</span></a>
+                    </Link>
+
+                    <span>No hidden charges!</span>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        ) : (
+          <div id="month">
+            <Row>
+              <Col lg={4}>
+                <div className="pricing-one__single">
+                  <div className="pricing-one__circle"></div>
+                  <div className="pricing-one__inner">
+                    <p>Basic Pack</p>
+                    <h3>$20.00</h3>
+                    <ul className="list-unstyled pricing-one__list">
+                      <li>Extra features</li>
+                      <li>Lifetime free support</li>
+                      <li>Upgrate options</li>
+                      <li>Full access</li>
+                    </ul>
+                    <Link href="#none" className="thm-btn pricing-one__btn">
+                      <a><span>Choose Plan</span></a>
+                    </Link>
+
+                    <span>No hidden charges!</span>
+                  </div>
+                </div>
+              </Col>
+              <Col lg={4}>
+                <div className="pricing-one__single">
+                  <div className="pricing-one__circle"></div>
+                  <div className="pricing-one__inner">
+                    <p>Standard Pack</p>
+                    <h3>$40.00</h3>
+                    <ul className="list-unstyled pricing-one__list">
+                      <li>Extra features</li>
+                      <li>Lifetime free support</li>
+                      <li>Upgrate options</li>
+                      <li>Full access</li>
+                    </ul>
+                    <Link href="#none" className="thm-btn pricing-one__btn">
+                      <a><span>Choose Plan</span></a>
+                    </Link>
+
+                    <span>No hidden charges!</span>
+                  </div>
+                </div>
+              </Col>
+              <Col lg={4}>
+                <div className="pricing-one__single">
+                  <div className="pricing-one__circle"></div>
+                  <div className="pricing-one__inner">
+                    <p>Ultimate Pack</p>
+                    <h3>$49.00</h3>
+                    <ul className="list-unstyled pricing-one__list">
+                      <li>Extra features</li>
+                      <li>Lifetime free support</li>
+                      <li>Upgrate options</li>
+                      <li>Full access</li>
+                    </ul>
+                    <Link href="#none" className="thm-btn pricing-one__btn">
+                      <a><span>Choose Plan</span></a>
+                    </Link>
+
+                    <span>No hidden charges!</span>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+        )}
+      </Container>
+    </section>
+  );
+};
+
+export default Pricing;
