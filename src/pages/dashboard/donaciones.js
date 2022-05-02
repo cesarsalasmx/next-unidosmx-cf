@@ -123,23 +123,23 @@ const Dashboard = props => {
                       <tbody>
                         <tr>
                           <td>
-                            <span className="badge bg-primary">Desk</span>
+                            <span className="badge bg-primary">1</span>
                           </td>
-                          <td>Desktop</td>
+                          <td>Sonríe</td>
                           <td className="text-end">54.5%</td>
                         </tr>
                         <tr>
                           <td>
-                            <span className="badge bg-success">Mob</span>
+                            <span className="badge bg-success">2</span>
                           </td>
-                          <td>Mobile</td>
+                          <td>Soy futuro</td>
                           <td className="text-end">28.0%</td>
                         </tr>
                         <tr>
                           <td>
-                            <span className="badge bg-warning">Tab</span>
+                            <span className="badge bg-warning">3</span>
                           </td>
-                          <td>Tablets</td>
+                          <td>Reforesta Cancún</td>
                           <td className="text-end">17.5%</td>
                         </tr>
                       </tbody>
@@ -169,138 +169,138 @@ const Dashboard = props => {
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row">#14256</th>
+                          <th scope="row">#142</th>
                           <td>
                             <div>
-                              Philip Smead
+                              Rafael Lagunas
                             </div>
                           </td>
                           <td>15/1/2018</td>
-                          <td>$94</td>
+                          <td>$100</td>
                           <td>
                             <span className="badge bg-success">
-                              Delivered
+                              Completado
                             </span>
                           </td>
                           <td>
                             <div>
                               <Link href="#" className="btn btn-primary btn-sm">
                                 <a>
-                                Edit
+                                Ver más
                                 </a>
                               </Link>
                             </div>
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">#14257</th>
+                          <th scope="row">#143</th>
                           <td>
                             <div>
-                              Brent Shipley
+                              César Salas
                             </div>
                           </td>
                           <td>16/1/2019</td>
-                          <td>$112</td>
+                          <td>$1000</td>
                           <td>
-                            <span className="badge bg-warning">Pending</span>
+                            <span className="badge bg-warning">Pendiente</span>
                           </td>
                           <td>
                             <div>
                               <Link href="#" className="btn btn-primary btn-sm">
                                 <a>
-                                Edit
+                                Ver más
                                 </a>
                               </Link>
                             </div>
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">#14258</th>
+                          <th scope="row">#144</th>
                           <td>
                             <div>
-                              Robert Sitton
+                              Rafael Lagunas
                             </div>
                           </td>
                           <td>17/1/2019</td>
-                          <td>$116</td>
+                          <td>$500</td>
                           <td>
                             <span className="badge bg-success">
-                              Delivered
+                              Completado
                             </span>
                           </td>
                           <td>
                             <div>
                               <Link href="#" className="btn btn-primary btn-sm">
                                 <a>
-                                Edit
+                                Ver más
                                 </a>
                               </Link>
                             </div>
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">#14259</th>
+                          <th scope="row">#145</th>
                           <td>
                             <div>
-                              Alberto Jackson
+                              Reafael Lagunas
                             </div>
                           </td>
                           <td>18/1/2019</td>
-                          <td>$109</td>
+                          <td>$1000</td>
                           <td>
-                            <span className="badge bg-danger">Cancel</span>
+                            <span className="badge bg-danger">Cancelado</span>
                           </td>
                           <td>
                             <div>
                               <Link href="#" className="btn btn-primary btn-sm">
                                 <a>
-                                Edit
+                                Ver más
                                 </a>
                               </Link>
                             </div>
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">#14260</th>
+                          <th scope="row">#146</th>
                           <td>
                             <div>
-                              David Sanchez
+                              Hugo Alberto Perez
                             </div>
                           </td>
                           <td>19/1/2019</td>
-                          <td>$120</td>
+                          <td>$100</td>
                           <td>
                             <span className="badge bg-success">
-                              Delivered
+                              Completado
                             </span>
                           </td>
                           <td>
                             <div>
                               <Link href="#" className="btn btn-primary btn-sm">
                                 <a>
-                                Edit
+                                Ver más
                                 </a>
                               </Link>
                             </div>
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">#14261</th>
+                          <th scope="row">#147</th>
                           <td>
                             <div>
-                              Philip Smead
+                              César Salas 
                             </div>
                           </td>
                           <td>15/1/2018</td>
-                          <td>$94</td>
+                          <td>$200</td>
                           <td>
-                            <span className="badge bg-warning">Pending</span>
+                            <span className="badge bg-warning">Pendiente</span>
                           </td>
                           <td>
                             <div>
                               <Link href="#" className="btn btn-primary btn-sm">
                                 <a>
-                                Edit
+                                Ver más
                                 </a>
                               </Link>
                             </div>

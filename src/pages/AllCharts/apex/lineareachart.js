@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import dynamic from 'next/dynamic';
-const ReactApexChart = dynamic(() => import('react-apexcharts'), {ssr: false});
+const ChartistGraph = dynamic(() => import('react-chartist'), {ssr: false});
 
 
 class lineareachart extends Component {

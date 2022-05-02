@@ -48,8 +48,8 @@ const MobileMenu = () => {
       </div>
       <div className="side-menu__block-inner ">
         <div className="side-menu__top justify-content-end">
-          <Link href="#none" className="side-menu__toggler side-menu__close-btn">
-            <a><Image src={CloseBtn} alt="awesome post" /></a>
+          <Link href="#none">
+            <a className="side-menu__toggler side-menu__close-btn"><Image src={CloseBtn} alt="awesome post" /></a>
           </Link>
         </div>
 

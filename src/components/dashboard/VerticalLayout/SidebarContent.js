@@ -33,7 +33,7 @@ const SidebarContent = (props) => {
             </li>
 
             <li>
-              <Link href="/#" className="has-arrow waves-effect">
+              <Link href="/dashboard/proyectos" className="has-arrow waves-effect">
                 <a>
                   <i className="ti-email"></i>
                   <span>Proyectos</span>
@@ -44,34 +44,10 @@ const SidebarContent = (props) => {
             <li className="menu-title">Tráfico</li>
 
             <li>
-              <Link href="/#" className="has-arrow waves-effect">
+              <Link href="/dashboard/trafico/informe" className="has-arrow waves-effect">
                 <a>
                   <i className="ti-package"></i>
-                  <span>Audiencia</span>
-                </a> 
-              </Link>
-            </li>
-            <li>
-              <Link href="/#" className="waves-effect">
-                <a>
-                  <i className="ti-receipt"></i>
-                  <span>Usuarios</span>
-                </a> 
-              </Link>
-            </li>
-            <li>
-              <Link href="/#" className="waves-effect">
-                <a>
-                  <i className="ti-receipt"></i>
-                  <span>Dispositivos</span>
-                </a> 
-              </Link>
-            </li>
-            <li>
-              <Link href="/#" className="waves-effect">
-                <a>
-                  <i className="ti-receipt"></i>
-                  <span>Grupos demográficos</span>
+                  <span>Informes</span>
                 </a> 
               </Link>
             </li>

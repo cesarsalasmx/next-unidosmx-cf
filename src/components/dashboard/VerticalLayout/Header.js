@@ -100,9 +100,9 @@ const Header = props => {
                   Publicar <i className="mdi mdi-chevron-down"></i>
                 </DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem>Proyecto</DropdownItem>
-                  <DropdownItem>Post de blog</DropdownItem>
-                  <DropdownItem>Crear usuario</DropdownItem>
+                  <DropdownItem><Link href={'/dashboard/agregar/causa'}><a>Proyecto</a></Link></DropdownItem>
+                  <DropdownItem><Link href={'/dashboard/agregar/post'}><a>Post de blog</a></Link></DropdownItem>
+                  <DropdownItem><Link href={'/dashboard/agregar/usuario'}><a>Crear usuario</a></Link></DropdownItem>
                   <div className="dropdown-divider"></div>
                   <DropdownItem>Cerrar sesión</DropdownItem>
                 </DropdownMenu>

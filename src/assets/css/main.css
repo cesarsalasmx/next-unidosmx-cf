@@ -3416,3 +3416,6 @@ border-bottom: #a5a9bb solid 1px;
 .checkout_cause_label{
   font-weight: bold;
 }
+.input_public_post_form{
+  margin-top: 15px;
+}

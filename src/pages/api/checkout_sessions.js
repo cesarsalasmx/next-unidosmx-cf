@@ -7,7 +7,6 @@ const donations=[
 ]
 
 export default async function handlerCheckout(req, res, props) {
-  console.log(req.body.PRICE_ID);
   if (req.method === 'POST') {
     try {
       const amount = donations.filter(donations => donations.amount == req.body.PRICE_ID)

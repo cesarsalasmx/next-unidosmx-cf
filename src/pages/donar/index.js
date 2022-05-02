@@ -61,6 +61,7 @@ const Donar = (props) => {
                                 id="firstName"
                                 onChange={handleInputChange}
                                 placeholder="Nombre"
+                                required="required"
                            />
                            <Label>Apellidos: <span className="inputRequired">*</span></Label>
                            <Input 
@@ -69,6 +70,7 @@ const Donar = (props) => {
                                 id="lastName"
                                 onChange={handleInputChange}
                                 placeholder="Apellidos"
+                                required="required"
                            />
                            </FormGroup>
                            <FormGroup>
@@ -79,6 +81,7 @@ const Donar = (props) => {
                                 id="email"
                                 onChange={handleInputChange}
                                 placeholder="Correo electrónico"
+                                required="required"
                            />
                            <Label>Contraseña: <span className="inputRequired">*</span></Label>
                            <Input 
@@ -87,6 +90,7 @@ const Donar = (props) => {
                                 id="password"
                                 onChange={handleInputChange}
                                 placeholder="Contraseña"
+                                required="required"
                            />
                            </FormGroup>
                            <FormGroup>
@@ -97,6 +101,7 @@ const Donar = (props) => {
                                 id="city"
                                 onChange={handleInputChange}
                                 placeholder="Localidad / Ciudad"
+                                required="required"
                                />
                                <Label>Código postal: <span className="inputRequired">*</span></Label>
                                <Input
@@ -105,6 +110,7 @@ const Donar = (props) => {
                                 id="cp"
                                 onChange={handleInputChange}
                                 placeholder="Código postal"
+                                required="required"
                                />
                            </FormGroup>
                    </Col>
@@ -116,6 +122,7 @@ const Donar = (props) => {
                                 name="PRICE_ID"
                                 id="PRICE_ID"
                                 onChange={handleInputChange}
+                                required="required"
                             >
                             <option>$100.00</option>
                             <option>$200.00</option>
