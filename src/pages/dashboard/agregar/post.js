@@ -13,11 +13,33 @@ import {
   Button
 } from "reactstrap";
 import dynamic from "next/dynamic";
+import { useMutation } from "@apollo/client";
+const ADD_POST=gql`
+mutation AddPost(
+  $content:String!,
+  $title:String!,
+  $image:String!,
+  $category:String! ){
+  AddPostMutation(
+      content: $content,
+      title: $title,
+      image: $image,
+      category:$category 
+    ){
+    id
+  }
+}
+`;
+
 const Layout = dynamic(() => import("../../../components/dashboard/VerticalLayout"),{ ssr: false});
 // Custom Scrollbar
 //import SimpleBar from "simplebar-react";
 // import images
 const Dashboard = props => {
+  const [allData, setAllData] = useState('');
+  const handleAddPost = ()=>{
+    
+  }
   const [menu, setMenu] = useState(false);
   const toggle = () => {
     setMenu(!menu)

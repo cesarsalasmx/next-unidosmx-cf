@@ -7,7 +7,7 @@ import { gql, useQuery } from "@apollo/client";
 //Components
 import Layout from "../../components/Layout";
 import Header from "../../components/Header";
-import MobileMenu from "../../components/MobileMenu";
+//import MobileMenu from "../../components/MobileMenu";
 import PageHeader from "../../components/PageHeader";
 import Footer from "../../components/Footer";
 import BlogSidebar from "../../components/BlogSidebar";
@@ -19,7 +19,7 @@ const BlogPostPage = () => {
   const { query: { slug } } = useRouter();
   const query = gql`
   query view_causes{
-    PostQuery(slug:'${slug}'){
+    PostQuery(slug:"${slug}"){
       id,
       title,
       content,
@@ -35,7 +35,7 @@ const BlogPostPage = () => {
   return (
     <Layout pageTitle="UnidosMX - Crowdfunding">
     <Header btnClass="main-nav__btn-two" />
-    <MobileMenu />
+
     <PageHeader pageHeading={data.PostQuery.title} />
 
     <section className="blog-details">

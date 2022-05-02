@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "reactstrap";
 import { Row } from "reactstrap";
 import Layout from "../components/Layout";
-import MobileMenu from "../components/MobileMenu";
+//import MobileMenu from "../components/MobileMenu";
 import Header from "../components/Header";
 import PageHeader from "../components/PageHeader";
 import BlogPost from "../components/BlogPost";
@@ -19,7 +19,7 @@ import BlogImage6 from "../assets/images/blog/blog-1-6.jpg";
 const BlogPage = () => (
   <Layout pageTitle="Apiton | Blog Page">
     <Header btnClass="main-nav__btn-two" />
-    <MobileMenu />
+
     <PageHeader pageHeading="Blog Grid Page" />
 
     <section className="blog-grid">

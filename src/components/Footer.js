@@ -16,11 +16,7 @@ const Footer = () => {
                   <Link href="/">
                     <a><Image src={FooterLogo} width="129" height="60px" alt="awesome post" /></a>
                   </Link>
-                  <p>
-                    Lorem Ipsum is simply dummy text the <br /> printing and
-                    setting industry. Lorm Ipsum
-                    <br /> has been the text ever.
-                  </p>
+                 
                 </div>
               </div>
 

@@ -6,14 +6,10 @@ import videoBG from "../assets/images/resources/proyecto-unidos-video-background
 import Link from "next/link";
 
 const VideoOne = () => {
-  const [open, setOpen] = useState({
-    isOpen: false
-  });
+  const [open, setOpen] = useState(false);
   const openModal = (e) => {
     e.preventDefault();
-    setOpen({
-      isOpen: true
-    });
+    setOpen(true);
   };
   return (
     <section className="video-one">
@@ -33,9 +29,9 @@ const VideoOne = () => {
         </div>
         <ModalVideo
           channel="youtube"
-          isOpen={open.isOpen}
+          isOpen={open}
           videoId="35-e7UNeDqgmh6"
-          onClose={() => setOpen({ isOpen: false })}
+          onClose={() => setOpen(false )}
         />
         <Link
           href="#none"
