@@ -1,11 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import Layout from "../../components/Layout";
 import { Container, Form, FormGroup, Input, Label, Row, Col, Button } from "reactstrap";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../assets/images/unidos-mx-logo-pruple.png"
 import { loadStripe } from '@stripe/stripe-js';
-
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
@@ -21,6 +20,25 @@ const Donar = (props) => {
           console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
         }
       }, []);
+    const [datos, setDatos] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        city: '',
+        cp: '',
+        PRICE_ID: '',
+        message: '',
+    })
+    const handleSubmitCheckoutForm = (event) => {
+        
+    }
+    const handleInputChange = (event) => {
+        setDatos({
+            ...datos,
+            [event.target.name] : event.target.value
+        })
+    }
    return (
       <Layout pageTitle="Unidos mx - Crowdfunding">
          <div className="checkout_content">
@@ -30,7 +48,7 @@ const Donar = (props) => {
             </Link>
             </div>
             <div className="checkout_main">
-                <Form action="/api/checkout_sessions" method="POST">
+                <Form action={`/api/checkout_sessions?amount=${datos.PRICE_ID}`} method="POST" onSubmit={handleSubmitCheckoutForm}>
                <Container>
                 <Row>
                    <Col md="6" className="checkout_form checkout_user_data">
@@ -41,6 +59,7 @@ const Donar = (props) => {
                                 type="text"
                                 name="firstName"
                                 id="firstName"
+                                onChange={handleInputChange}
                                 placeholder="Nombre"
                            />
                            <Label>Apellidos: <span className="inputRequired">*</span></Label>
@@ -48,6 +67,7 @@ const Donar = (props) => {
                                 type="text"
                                 name="lastName"
                                 id="lastName"
+                                onChange={handleInputChange}
                                 placeholder="Apellidos"
                            />
                            </FormGroup>
@@ -57,6 +77,7 @@ const Donar = (props) => {
                                 type="email"
                                 name="email"
                                 id="email"
+                                onChange={handleInputChange}
                                 placeholder="Correo electrónico"
                            />
                            <Label>Contraseña: <span className="inputRequired">*</span></Label>
@@ -64,6 +85,7 @@ const Donar = (props) => {
                                 type="password"
                                 name="password"
                                 id="password"
+                                onChange={handleInputChange}
                                 placeholder="Contraseña"
                            />
                            </FormGroup>
@@ -73,6 +95,7 @@ const Donar = (props) => {
                                 type="text"
                                 name="city"
                                 id="city"
+                                onChange={handleInputChange}
                                 placeholder="Localidad / Ciudad"
                                />
                                <Label>Código postal: <span className="inputRequired">*</span></Label>
@@ -80,6 +103,7 @@ const Donar = (props) => {
                                 type="text"
                                 name="cp"
                                 id="cp"
+                                onChange={handleInputChange}
                                 placeholder="Código postal"
                                />
                            </FormGroup>
@@ -88,16 +112,22 @@ const Donar = (props) => {
                         <FormGroup>
                             <Label>Cantidad a donar: <span className="inputRequired">*</span></Label>
                             <Input
-                                type="number"
+                                type="select"
                                 name="PRICE_ID"
                                 id="PRICE_ID"
-                                placeholder="Donación"
-                            />
+                                onChange={handleInputChange}
+                            >
+                            <option>$100.00</option>
+                            <option>$200.00</option>
+                            <option>$500.00</option>
+                            <option>$1000.00</option>
+                            </Input>
                             <Label>¿Quieres dejar un mensaje?</Label>
                             <Input
                                 type="textarea"
                                 name="message"
                                 id="message"
+                                onChange={handleInputChange}
                                 placeholder="Mensaje"
                             />
                         </FormGroup>

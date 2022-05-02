@@ -77,6 +77,7 @@ File: Main Css File
   .navbar-brand-box {
     width: auto; }
   .logo span.logo-lg {
+    padding-top: 10px;
     display: none; }
   .logo span.logo-sm {
     display: inline-block; } }
@@ -414,6 +415,7 @@ body[data-layout="horizontal"] .footer {
   width: 70px !important; }
 
 .vertical-collpsed .logo span.logo-lg {
+  padding-top: 10px;
   display: none; }
 
 .vertical-collpsed .logo span.logo-sm {

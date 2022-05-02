@@ -3,16 +3,12 @@ import React, { useRef } from "react"
 
 // //Import Scrollbar
 import SimpleBar from "simplebar-react"
-
 // MetisMenu
-
-import { Link } from "next/router";
-
+import Link from "next/link";
 
 const SidebarContent = (props) => {
-  const ref = useRef()
+  const ref = useRef();
   // Use ComponentDidMount and ComponentDidUpdate method symultaniously
-  
   return (
     <React.Fragment>
       <SimpleBar style={{ maxHeight: "100%" }} ref={ref}>
@@ -28,7 +24,7 @@ const SidebarContent = (props) => {
             </li>
 
             <li>
-              <Link href="/calendar" className=" waves-effect">
+              <Link href="/dashboard/donaciones" className=" waves-effect">
                 <a>
                   <i className="ti-calendar"></i>
                   <span>Donaciones</span>
@@ -84,11 +80,9 @@ const SidebarContent = (props) => {
       </SimpleBar>
     </React.Fragment>
   )
-}
-
+};
 SidebarContent.propTypes = {
   location: PropTypes.object,
   t: PropTypes.any,
-}
-
+};
 export default SidebarContent;

@@ -3,7 +3,7 @@ import React, { useState } from "react"
 
 import { Form, Dropdown, DropdownMenu, DropdownItem, DropdownToggle, Input, Button } from "reactstrap"
 
-import { Link } from "next/router";
+import Link from "next/link";
 import Image from 'next/image';
 // Import menuDropdown
 // import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown"
@@ -71,22 +71,10 @@ const Header = props => {
         <div className="navbar-header">
           <div className="d-flex">
             <div className="navbar-brand-box">
-              <Link href="/" className="logo logo-dark">
-                <a><span className="logo-sm">
-                  <Image src={logosmImg} alt="" height="50" />
-                </span>
-                <span className="logo-lg">
-                  <Image src={logodarkImg} alt="" height="50" />
-                </span>
-                </a>
-              </Link>
-
               <Link href="/" className="logo logo-light">
-                <a><span className="logo-sm">
-                  <Image src={logosmImg} alt="" height="50" />
-                </span>
+                <a>
                 <span className="logo-lg">
-                  <Image src={logolightImg} alt="" height="50" />
+                  <Image src={logolightImg} alt="" height="50" width={120}/>
                 </span>
                 </a>
               </Link>

@@ -8,6 +8,7 @@ import "../assets/css/responsive.css";
 import "react-modal-video/css/modal-video.min.css";
 import "../assets/css/main-login.css";
 import "../assets/sass/dashboard/chartist.scss";
+import "../assets/sass/dashboard/app.scss"
 import "../assets/css/main-login.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { StrictMode } from "react";

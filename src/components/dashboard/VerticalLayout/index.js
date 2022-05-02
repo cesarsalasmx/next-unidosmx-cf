@@ -14,7 +14,7 @@ import React, { Component } from "react"
 import dynamic from "next/dynamic";
 
 const Header = dynamic(() => import("./Header"), { ssr: false}); 
-import Sidebar from "./Sidebar"
+const Sidebar = dynamic(() => import("./Sidebar"), {ssr:false});
 import Rightbar from "../CommonForBoth/Rightbar"
 
 class Layout extends Component {

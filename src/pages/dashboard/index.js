@@ -1,35 +1,27 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, {useState} from "react";
 import {
   Container,
   Row,
   Col,
   Card,
   CardBody,
+  Dropdown,
+  DropdownToggle,
+  DropdownItem,
+  DropdownMenu
 } from "reactstrap";
-import { Link } from "next/router";
+import Link from "next/link";
 import Image from "next/image";
-// Components
-// import Footer from "../../components/dashboard/VerticalLayout/Footer";
-// import Header from "../../components/dashboard/VerticalLayout/Header";
-// import Sidebar from "../../components/dashboard/VerticalLayout/Sidebar";
 import dynamic from "next/dynamic";
 const Layout = dynamic(() => import("../../components/dashboard/VerticalLayout"),{ ssr: false});
-
-
 // Custom Scrollbar
 //import SimpleBar from "simplebar-react";
-
 // import images
 import servicesIcon1 from "../../assets/images/services-icon/01.png";
 import servicesIcon2 from "../../assets/images/services-icon/02.png";
 import servicesIcon3 from "../../assets/images/services-icon/03.png";
 import servicesIcon4 from "../../assets/images/services-icon/04.png";
-import user2 from "../../assets/images/users/user-2.jpg";
-import user3 from "../../assets/images/users/user-3.jpg";
-import user4 from "../../assets/images/users/user-4.jpg";
-import user5 from "../../assets/images/users/user-5.jpg";
-import user6 from "../../assets/images/users/user-6.jpg";
 
 // Charts
 const LineAreaChart = dynamic(() => import("../AllCharts/apex/lineareachart"),{ssr: false});
@@ -40,10 +32,10 @@ const SparkLine1 = dynamic(() => import("../AllCharts/sparkline/sparkline1"),{ss
 const Salesdonut = dynamic(() => import("../AllCharts/apex/salesdonut"),{ssr: false});
 
 const Dashboard = props => {
-  // const [menu, setMenu] = useState(false)
-  // const toggle = () => {
-  //   setMenu(!menu)
-  // }
+  const [menu, setMenu] = useState(false);
+  const toggle = () => {
+    setMenu(!menu)
+  };
   return (
     <React.Fragment>
        <Layout>
@@ -60,18 +52,18 @@ const Dashboard = props => {
 
               <Col md="4">
                 <div className="float-end d-none d-md-block">
-                  {/* <Dropdown isOpen={menu} toggle={toggle}>
+                  <Dropdown isOpen={menu} toggle={toggle}>
                     <DropdownToggle color="primary" className="btn btn-primary dropdown-toggle waves-effect waves-light">
                       <i className="mdi mdi-cog me-2"></i> Ajustes Rápidos
                     </DropdownToggle>
-                    <DropdownMenu right>
+                    <DropdownMenu end>
                       <DropdownItem tag="a" href="#">Action</DropdownItem>
                       <DropdownItem tag="a" href="#">Another action</DropdownItem>
                       <DropdownItem tag="a" href="#">Something else here</DropdownItem>
                       <DropdownItem divider />
                       <DropdownItem tag="a" href="#">Separated link</DropdownItem>
                     </DropdownMenu>
-                  </Dropdown> */}
+                  </Dropdown>
                 </div>
               </Col>
             </Row>
@@ -453,12 +445,6 @@ const Dashboard = props => {
                         </Link>
                       </div>
                       <h6 className="mb-0">
-                        {" "}
-                        <Image
-                          src={user3}
-                          alt=""
-                          className="avatar-sm rounded-circle me-2"
-                        />{" "}
                         James Athey
                       </h6>
                     </CardBody>
@@ -491,11 +477,6 @@ const Dashboard = props => {
                           <th scope="row">#14256</th>
                           <td>
                             <div>
-                              <Image
-                                src={user2}
-                                alt=""
-                                className="avatar-xs rounded-circle me-2"
-                              />{" "}
                               Philip Smead
                             </div>
                           </td>
@@ -520,11 +501,6 @@ const Dashboard = props => {
                           <th scope="row">#14257</th>
                           <td>
                             <div>
-                              <Image
-                                src={user3}
-                                alt=""
-                                className="avatar-xs rounded-circle me-2"
-                              />{" "}
                               Brent Shipley
                             </div>
                           </td>
@@ -547,11 +523,6 @@ const Dashboard = props => {
                           <th scope="row">#14258</th>
                           <td>
                             <div>
-                              <Image
-                                src={user4}
-                                alt=""
-                                className="avatar-xs rounded-circle me-2"
-                              />{" "}
                               Robert Sitton
                             </div>
                           </td>
@@ -576,11 +547,6 @@ const Dashboard = props => {
                           <th scope="row">#14259</th>
                           <td>
                             <div>
-                              <Image
-                                src={user5}
-                                alt=""
-                                className="avatar-xs rounded-circle me-2"
-                              />{" "}
                               Alberto Jackson
                             </div>
                           </td>
@@ -603,11 +569,6 @@ const Dashboard = props => {
                           <th scope="row">#14260</th>
                           <td>
                             <div>
-                              <Image
-                                src={user6}
-                                alt=""
-                                className="avatar-xs rounded-circle me-2"
-                              />{" "}
                               David Sanchez
                             </div>
                           </td>
@@ -632,11 +593,6 @@ const Dashboard = props => {
                           <th scope="row">#14261</th>
                           <td>
                             <div>
-                              <Image
-                                src={user2}
-                                alt=""
-                                className="avatar-xs rounded-circle me-2"
-                              />{" "}
                               Philip Smead
                             </div>
                           </td>
@@ -673,4 +629,4 @@ Dashboard.propTypes = {
   t: PropTypes.any
 }
 
-export default (Dashboard)
+export default Dashboard;
