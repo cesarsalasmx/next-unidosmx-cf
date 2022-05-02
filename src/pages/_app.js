@@ -13,16 +13,16 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { StrictMode } from "react";
 
 const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
+    uri: "http://164.92.217.65/",
     cache: new InMemoryCache(),
 });
 
 function MyApp({ Component, pageProps }) {
     return (  
       <ApolloProvider client={client}>
-        <StrictMode>
+        <>
           <Component {...pageProps} />
-        </StrictMode>
+        </>
       </ApolloProvider>
     )
   }

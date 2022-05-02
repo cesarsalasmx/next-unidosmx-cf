@@ -24,7 +24,8 @@ const queryCauses = gql`
       first_name,
       last_name,
       date,
-      value
+      value,
+      slug
     }
   }
 `; 

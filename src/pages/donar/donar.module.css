@@ -1,0 +1,22 @@
+.checkout_content {
+    width: 1366px;
+    height: 768px;
+  
+    display: grid;
+    grid:
+      "header" auto
+      "main" 1fr
+      "footer" auto
+      / 1fr;
+    gap: 8px;
+}  
+.checkout_header {
+    grid-area: header; 
+    background-color: brown;
+}
+.checkout_main {
+     grid-area: main; 
+}
+.checkout_footer {
+     grid-area: footer; 
+}

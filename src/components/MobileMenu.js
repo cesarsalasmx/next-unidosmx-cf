@@ -41,6 +41,7 @@ const MobileMenu = () => {
 
   return (
     <div className="side-menu__block">
+      <span className="side-menu__toggler"></span>
       <div className="side-menu__block-overlay custom-cursor__overlay">
         <div className="cursor"></div>
         <div className="cursor-follower"></div>

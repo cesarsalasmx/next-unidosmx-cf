@@ -3368,3 +3368,51 @@ button {
 @media (min-width: 992px) {
   .faq-one .container {
     max-width: 1000px; } }
+
+.checkout_content {
+
+display: grid;
+grid:
+"header" auto
+"main" auto
+"footer" auto
+/ auto;
+gap: 8px;
+} 
+.checkout_header {
+grid-area: header; 
+width: 100%;
+padding-top: 20px;
+padding-bottom: 20px;
+border-bottom: #a5a9bb solid 1px;
+}
+.checkout_Logo_btn{
+ 
+}
+.checkout_main {
+ grid-area: main; 
+}
+.checkout_footer {
+ grid-area: footer; 
+}
+.inputRequired{
+  color: #ee464b;
+  font-weight: bold;
+}
+.checkout_user_data{
+  padding: 50px;
+}
+.checkout_donation{
+  padding: 20px 50px 50px 50px;
+  margin-left: 50px;
+  margin-top: 30px;
+  border: #737789 solid 0.2px;
+}
+.checkout_form label{
+  font-size: 14 px;
+  font-weight: 500;
+  padding-top: 15px;
+}
+.checkout_cause_label{
+  font-weight: bold;
+}
