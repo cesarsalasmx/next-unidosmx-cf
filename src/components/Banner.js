@@ -28,10 +28,6 @@ const Banner = () => {
               <h3>
                 Proyecto Unidos <br /> apoyando  <br /> cuasas sociales
               </h3>
-              <p>
-                Nulla facilisi. Proin felis neque, suscipit egestas erat a{" "}
-                <br /> tincidunt finibus magna consectetur lacus.
-              </p>
               <Link href="#actividades">
                 <a className="banner-one__btn thm-btn "><span>Comienza ahora</span></a>
               </Link>
