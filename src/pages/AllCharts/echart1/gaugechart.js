@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import cloneDeep from "lodash.clonedeep"
+import cloneDeep from "lodash/clonedeep"
 import ReactEcharts from "echarts-for-react"
 
 class Guage extends Component {
