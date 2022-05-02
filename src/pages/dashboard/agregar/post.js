@@ -13,7 +13,7 @@ import {
   Button
 } from "reactstrap";
 import dynamic from "next/dynamic";
-import { useMutation } from "@apollo/client";
+import gql,{ useMutation } from "@apollo/client";
 const ADD_POST=gql`
 mutation AddPost(
   $content:String!,
@@ -63,7 +63,7 @@ const Dashboard = props => {
               <Card>
                 <CardBody>
                     <h4 className="card-title mb-4">Publicar un post en el blog:</h4>
-                    <Form>
+                    <Form onSubmit={handleFormChange}>
                         <FormGroup>
                             <Label className="input_public_post_form">Título</Label>
                             <Input 
