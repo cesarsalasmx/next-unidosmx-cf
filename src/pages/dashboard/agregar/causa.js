@@ -1,3 +1,4 @@
+
 import PropTypes from "prop-types";
 import React, {useState} from "react";
 import {
@@ -6,24 +7,40 @@ import {
   Col,
   Card,
   CardBody,
-  Dropdown,
-  DropdownToggle,
-  DropdownItem,
-  DropdownMenu,
   Form,
-  FormFeedback,
   FormGroup,
   Label,
   Input,
   Button
 } from "reactstrap";
-import Link from "next/link";
 import dynamic from "next/dynamic";
+import {gql, useMutation } from "@apollo/client";
+const ADD_POST=gql`
+mutation AddPost(
+  $content:String!,
+  $title:String!,
+  $image:String!,
+  $category:String! ){
+  AddPostMutation(
+      content: $content,
+      title: $title,
+      image: $image,
+      category:$category 
+    ){
+    id
+  }
+}
+`;
+
 const Layout = dynamic(() => import("../../../components/dashboard/VerticalLayout"),{ ssr: false});
 // Custom Scrollbar
 //import SimpleBar from "simplebar-react";
 // import images
 const Dashboard = props => {
+  const [allData, setAllData] = useState('');
+  const handleAddPost = ()=>{
+    
+  }
   const [menu, setMenu] = useState(false);
   const toggle = () => {
     setMenu(!menu)
@@ -38,7 +55,7 @@ const Dashboard = props => {
           <div className="page-title-box">
             <Row className="align-items-center">
               <Col md={8}>
-                <h6 className="page-title">Causas - Unidos Mx</h6>
+                <h6 className="page-title">Blog - Unidos Mx</h6>
               </Col>
             </Row>
           </div>
@@ -46,8 +63,8 @@ const Dashboard = props => {
             <Col xl={12}>
               <Card>
                 <CardBody>
-                    <h4 className="card-title mb-4">Publicar una nueva causa:</h4>
-                    <Form>
+                    <h4 className="card-title mb-4">Publicar un post en el blog:</h4>
+                    <Form onSubmit={handleFormChange}>
                         <FormGroup>
                             <Label className="input_public_post_form">Título</Label>
                             <Input 

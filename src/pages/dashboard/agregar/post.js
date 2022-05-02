@@ -13,33 +13,11 @@ import {
   Button
 } from "reactstrap";
 import dynamic from "next/dynamic";
-import gql,{ useMutation } from "@apollo/client";
-const ADD_POST=gql`
-mutation AddPost(
-  $content:String!,
-  $title:String!,
-  $image:String!,
-  $category:String! ){
-  AddPostMutation(
-      content: $content,
-      title: $title,
-      image: $image,
-      category:$category 
-    ){
-    id
-  }
-}
-`;
-
 const Layout = dynamic(() => import("../../../components/dashboard/VerticalLayout"),{ ssr: false});
 // Custom Scrollbar
 //import SimpleBar from "simplebar-react";
 // import images
 const Dashboard = props => {
-  const [allData, setAllData] = useState('');
-  const handleAddPost = ()=>{
-    
-  }
   const [menu, setMenu] = useState(false);
   const toggle = () => {
     setMenu(!menu)
@@ -63,7 +41,7 @@ const Dashboard = props => {
               <Card>
                 <CardBody>
                     <h4 className="card-title mb-4">Publicar un post en el blog:</h4>
-                    <Form onSubmit={handleFormChange}>
+                    <Form>
                         <FormGroup>
                             <Label className="input_public_post_form">Título</Label>
                             <Input 
