@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from "next/link";
 const BlogSidebar = () => {
   return (
     <div className="sidebar">
@@ -7,9 +7,11 @@ const BlogSidebar = () => {
         <h3 className="sidebar__title">Participa en este proyecto</h3>
         <div className="sidebar__post-wrap">
           <div className="sidebar__post__single">
-          <a href="/donar" className="thm-btn">
+          <Link href="/donar">
+          <a className="thm-btn">
               <span>Ser donante</span>
             </a>
+          </Link>
           </div>
         </div>
       </div>

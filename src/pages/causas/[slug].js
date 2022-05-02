@@ -19,7 +19,7 @@ const BlogPostPage = () => {
   const { query: { slug } } = useRouter();
   const query = gql`
   query view_causes{
-    PostQuery(slug:"${slug}"){
+    PostQuery(slug:'${slug}'){
       id,
       title,
       content,

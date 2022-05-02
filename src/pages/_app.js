@@ -11,7 +11,6 @@ import "../assets/sass/dashboard/chartist.scss";
 import "../assets/sass/dashboard/app.scss"
 import "../assets/css/main-login.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { StrictMode } from "react";
 
 const client = new ApolloClient({
     uri: "http://164.92.217.65/",

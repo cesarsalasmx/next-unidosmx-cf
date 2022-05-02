@@ -24,6 +24,7 @@ const BlogHome = (props) => {
                 postTitle={data.title}
                 postDate={data.date}
                 postLink={`/causas/${data.slug}`}
+                key={props.key}
               />
             );
           })}
