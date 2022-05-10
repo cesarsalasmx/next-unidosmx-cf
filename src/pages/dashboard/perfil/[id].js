@@ -18,56 +18,112 @@ import {
 } from "reactstrap";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import {gql, useMutation } from "@apollo/client";
+import {gql, useMutation,useQuery } from "@apollo/client";
 const Layout = dynamic(() => import("../../../components/dashboard/VerticalLayout"),{ ssr: false});
-const ADD_CAUSE=gql`
-mutation AddUser(
-  $first_name: String!,
-  $last_name: String!,
-  $email: String!,
-  $password: String!,
-  $birthday: Date!,
-  $gender: String!,
-  $roles: String!,
-  $country: String!,
+const VIEW_USER=gql`
+query viewUser($id:ID!){
+    UserQuery(id:$id){
+      id,
+      first_name,
+      last_name,
+      username,
+      email,
+      password,
+      date_registration,
+      birthday,
+      id_gender,
+      status,
+      id_role,
+      country,
+  }}
+`; 
+const UPDATE_USER=gql`
+mutation UpdatePost(
+  $id: ID!,
+  $date: Date!,
+  $content: String!,
+  $slug: String!,
+  $title: String!,
+  $image: String!,
+  $category: String!,
 ){
-  AddUserMutation(
-    first_name: $first_name,
-    last_name: $last_name,
-    email: $email,
-    password: $password,
-    birthday: $birthday,
-    gender: $gender,
-    roles: $roles,
-    country: $country
+  UpdatePostMutation(
+    id: $id,
+    date: $date,
+    content: $content,
+    slug: $slug,
+    title: $title,
+    image: $image,
+    category: $category,
   ){
-	id
+    id
   }
 }
 `;
-// Custom Scrollbar
-//import SimpleBar from "simplebar-react";
-// import images
+const DELETE_USER=gql`
+mutation DeletePost($id: ID!){
+  DeletePostMutation(
+    id: $id,
+  ){
+    id
+  }
+}
+`
+
 const Dashboard = props => {
   const router = useRouter();
-  let modalResult = "success";
-  let variables = {
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "password": "",
-    "birthday": "",
-    "gender": "Hombre",
-    "roles": "Administrador",
-    "country": ""
+  const { query: { id } } = useRouter();
+  // GraphQL
+  const { data, loading } = useQuery(VIEW_USER,{variables:{id}});
+  const [ updateCause, {mutationData, mutationLoading, mutationError, mutationReset} ] = useMutation(UPDATE_USER,{
+    onCompleted:() => {
+      toggle("success");
+    },
+    onError: ()=> {
+      toggle("error");
+    }
+  });
+  const [ deleteCause, {deleteData, deleteLoading, deleteError, deleteReset}] = useMutation(DELETE_USER,{
+    onCompleted:()=>{
+      router.push(`/dashboard/proyectos`);
+    },
+    onError:()=>{
+      toggle("error");
+    }
+  });
+  //States
+  const [modalResult, setModalResult] = useState("success");
+  const [isEdit, setIsEdit] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  let variables= {};
+  if (!loading){
+    variables = {
+        "id": data.UserQuery.id,
+        "first_name": data.UserQuery.first_name,
+        "last_name": data.UserQuery.last_name,
+        "username": data.UserQuery.username,
+        "email": data.UserQuery.email,
+        "password": data.UserQuery.password,
+        "date_registration": data.UserQuery.date_registration,
+        "birthday": data.UserQuery.birthday,
+        "id_gender": data.UserQuery.id_gender,
+        "status": data.UserQuery.status,
+        "id_role": data.UserQuery.id_role,
+        "country": data.UserQuery.country,
+    };
+  }
+  console.log(variables);
+  const handleEditButton = ()=>{
+    setIsEdit(!isEdit)
   }
   const modalContent = {
     "success": {
-      title: "Usuario Creado",
-      body: "El usuario se creo correctamente, desde ahora tiene acceso a la plataforma",
-      cta: "Volver al dashboard",
+      title: "Causa Actualizada",
+      body: "La publicación actualizó exitosamente y está lista para recibir donaciones.",
+      cta: "Ver publicación",
       action: () => {
-        router.push(`/dashboard`);
+        router.push(`/causas/${variables.slug}`);
       },
     },
     "error": {
@@ -76,28 +132,27 @@ const Dashboard = props => {
       cta: "Volver a intentarlo",
       action:() => {
         reset();
-        toggle();;
+        toggle();
+      },
+    },
+    "delete": {
+      title: "Eliminar Usuario",
+      body: "Esta a punto de borrar esata causa. ¿Está seguro?",
+      cta: "Eliminar",
+      action:() => {
+        deleteCause({variables});
       },
     }
   }
-  const [modal, setModal] = useState(false);
   const toggle = (result) => {
-    modalResult = result;
+    setModalResult(result);
     setModal(!modal);
   }
-  const [ addUser, {data, loading, error, reset} ] = useMutation(ADD_CAUSE,{
-    onCompleted:() => {
-      toggle("success");
-    },
-    onError: ()=> {
-      toggle("error");
-    }
-  });
-  console.log(error);
   const handleFormChange = (event,inputName) => {
     variables[inputName] = event.target.value;
+    console.log(variables);
   }
-  const today = new Date().toDateString();
+  if (loading) return <div>Loading</div>
   return (
     <React.Fragment>
        <Layout>
@@ -106,7 +161,7 @@ const Dashboard = props => {
           <div className="page-title-box">
             <Row className="align-items-center">
               <Col md={8}>
-                <h6 className="page-title">Usuarios - Unidos Mx</h6>
+                <h6 className="page-title">Causas - Unidos Mx</h6>
               </Col>
             </Row>
           </div>
@@ -114,11 +169,10 @@ const Dashboard = props => {
             <Col xl={12}>
               <Card>
                 <CardBody>
-                    <h4 className="card-title mb-4">Agregar usuario:</h4>
+                    <h4 className="card-title mb-4">Publicar para recibir donaciones:</h4>
                     <Form onSubmit={e => {
                       e.preventDefault();
-                      console.log(variables)
-                      addUser({variables});
+                      updateCause({variables});
                     }}>
                         <FormGroup>
                             <Label className="input_public_post_form">Nombre:</Label>
@@ -127,6 +181,8 @@ const Dashboard = props => {
                             name="firsName"
                             placeholder="Nombre:"
                             onChange={(event)=>handleFormChange(event,"first_name")}
+                            disabled={!isEdit}
+                            defaultValue={variables.first_name}
                             required="required"
                             />
                             <Label className="input_public_post_form">Apellidos:</Label>
@@ -135,6 +191,8 @@ const Dashboard = props => {
                             name="lastName"
                             placeholder="Apellidos:"
                             onChange={(event)=>handleFormChange(event,"last_name")}
+                            disabled={!isEdit}
+                            defaultValue={variables.last_name}
                             required="required"
                             />
                             <Label className="input_public_post_form">Correo electrónico:</Label>
@@ -143,6 +201,8 @@ const Dashboard = props => {
                             name="email"
                             placeholder="Correo electrónico:"
                             onChange={(event)=>handleFormChange(event,"email")}
+                            disabled={!isEdit}
+                            defaultValue={variables.email}
                             required="required"
                             />
                             <Label className="input_public_post_form">Contraseña:</Label>
@@ -151,6 +211,8 @@ const Dashboard = props => {
                             name="password"
                             placeholder="Contraseña:"
                             onChange={(event)=>handleFormChange(event,"password")}
+                            disabled={!isEdit}
+                            defaultValue={variables.password}
                             required="required"
                             />
                             <Label className="input_public_post_form">Fecha de nacimiento:</Label>
@@ -158,6 +220,8 @@ const Dashboard = props => {
                             type="date"
                             name="birthday"
                             onChange={(event)=>handleFormChange(event,"birthday")}
+                            disabled={!isEdit}
+                            defaultValue={variables.birthday}
                             required="required"
                             />
                             <Label className="input_public_post_form">Género:</Label>
@@ -165,6 +229,8 @@ const Dashboard = props => {
                             type="select"
                             name="gender"
                             onChange={(event)=>handleFormChange(event,"gender")}
+                            disabled={!isEdit}
+                            defaultValue={variables}
                             required="required"
                             >
                                 <option>Hombre</option>
@@ -176,18 +242,24 @@ const Dashboard = props => {
                             type="text"
                             name="city"
                             onChange={(event)=>handleFormChange(event,"country")}
+                            disabled={!isEdit}
+                            defaultValue={variables.country}
                             required="required"
                             />
-                            <Button type="submit" className="input_public_post_form">Crear usuario</Button>
+                            {isEdit?<Button type="submit" className="input_public_post_form">Crear usuario</Button>:null}
                         </FormGroup>
                     </Form>
                 </CardBody>
               </Card>
             </Col>
+            <Col xl={12}>
+              <Button onClick={handleEditButton}>Editar</Button>&nbsp;&nbsp;&nbsp;<Button className="warning" onClick={() => toggle("delete")}>Eliminar</Button>
+                      
+            </Col>
           </Row>
         </Container>
       </div>
-      <Modal
+        <Modal
           isOpen={modal}
           toggle={toggle}
         >

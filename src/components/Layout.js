@@ -1,10 +1,38 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { Link as ScrollLink } from "react-scroll";
+import { gql, useMutation } from "@apollo/client";
 
+const ADD_SESSION = gql`
+mutation AddSesion(
+  $page_name: String!,
+  $ip: String!,
+  $browser: String!,
+  $date: Date!,
+  $device: String!,
+  $referrer: String!,
+){
+  AddSessionMutation(
+    page_name: $page_name,
+    ip: $ip,
+    browser: $browser,
+    date: $date,
+    device: $device,
+    referrer: $referrer,
+  ){
+    id
+  }
+}
+`;
+
+const getIP = async () => {
+  const response = await fetch(`https://api.ipify.org/?format=json`);
+  const {ip} = await response.json();
+  return ip;
+}
 const Layout = (props) => {
+ 
   const [scrollTop, setScrollTop] = useState(false);
-
   const handleScrollTop = () => {
     if (typeof window !== "undefined") {
       if (window.scrollY > 70) {
@@ -42,6 +70,7 @@ const Layout = (props) => {
           <i className="fa fa-angle-up"></i>
         </ScrollLink>
       ) : null}
+      
     </div>
   );
 };

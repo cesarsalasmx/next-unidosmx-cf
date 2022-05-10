@@ -30,7 +30,6 @@ const BlogPostPage = () => {
   }
 `; 
   const { data, loading } = useQuery(query);
-  console.log(data);
   if (loading) return <div>Loading</div>
   return (
     <Layout pageTitle="UnidosMX - Crowdfunding">

@@ -13,7 +13,7 @@ import "../assets/css/main-login.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-    uri: "http://164.92.217.65/",
+    uri: "http://localhost:4000/graphql",
     cache: new InMemoryCache(),
 });
 

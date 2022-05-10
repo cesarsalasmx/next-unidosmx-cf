@@ -13,7 +13,7 @@ import Team from "../components/Team";
 import VideoOne from "../components/VideoOne";
 import Faq from "../components/FAQ";
 import { gql, useQuery } from "@apollo/client";
-const queryCauses = gql`
+const VIEW_CAUSES = gql`
   query view_causes{
     AllPostsQuery{
       id,
@@ -29,7 +29,7 @@ const queryCauses = gql`
 `; 
 const HomePage = () => {
   const { causes, useCauses } = useState();
-  const { data, loading } = useQuery(queryCauses);
+  const { data, loading } = useQuery(VIEW_CAUSES);
   if (loading) return <div>Loading</div>
   return (
     <div>

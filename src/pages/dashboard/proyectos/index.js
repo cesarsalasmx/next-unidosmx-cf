@@ -13,16 +13,29 @@ import {
 } from "reactstrap";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { gql, useQuery } from "@apollo/client";
 const Layout = dynamic(() => import("../../../components/dashboard/VerticalLayout"),{ ssr: false});
 // Custom Scrollbar
 //import SimpleBar from "simplebar-react";
 // import images
+const VIEW_CAUSES = gql`
+  query view_causes{
+    AllPostsQuery{
+      id,
+      title,
+      date,
+      value,
+      slug
+    }
+  }
+`; 
 const Dashboard = props => {
   const [menu, setMenu] = useState(false);
   const toggle = () => {
     setMenu(!menu)
   };
-  const today = new Date().toDateString();
+  const { data, loading } = useQuery(VIEW_CAUSES);
+  if (loading) return <div>Loading</div>
   return (
     <React.Fragment>
        <Layout>
@@ -71,76 +84,34 @@ const Dashboard = props => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">#142</th>
-                          <td>
-                            <div>
-                              Sonríe
-                            </div>
-                          </td>
-                          <td>01/04/2022</td>
-                          <td>$700</td>
-                          <td>
-                            <span className="badge bg-success">
-                              Publicado
-                            </span>
-                           </td>
-                          <td>
-                            <div>
-                              <Link href="#" className="btn btn-primary btn-sm">
-                                <a>
-                                Ver más
-                                </a>
-                              </Link>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">#143</th>
-                          <td>
-                            <div>
-                              Soy futuro
-                            </div>
-                          </td>
-                          <td>01/04/2022</td>
-                          <td>$1200</td>
-                          <td>
-                            <span className="badge bg-success">Publicado</span>
-                          </td>
-                          <td>
-                            <div>
-                              <Link href="#" className="btn btn-primary btn-sm">
-                                <a>
-                                Ver más
-                                </a>
-                              </Link>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">#144</th>
-                          <td>
-                            <div>
-                              Reforesta Cancún
-                            </div>
-                          </td>
-                          <td>01/04/2022</td>
-                          <td>$500</td>
-                          <td>
-                            <span className="badge bg-success">
-                              Publicado
-                            </span>
-                          </td>
-                          <td>
-                            <div>
-                              <Link href="#" className="btn btn-primary btn-sm">
-                                <a>
-                                Ver más
-                                </a>
-                              </Link>
-                            </div>
-                          </td>
-                        </tr>
+                        {data.AllPostsQuery.map((causes) => {
+                          return(
+                          <tr key={causes.id}>
+                            <th scope="row">#{causes.id}</th>
+                            <td>
+                              <div>
+                                {causes.title}
+                              </div>
+                            </td>
+                            <td>{causes.date}</td>
+                            <td>$0</td>
+                            <td>
+                              <span className="badge bg-success">
+                                Publicado
+                              </span>
+                            </td>
+                            <td>
+                              <div>
+                                <Link href={`/dashboard/proyectos/editar/${causes.slug}`} className="btn btn-primary btn-sm">
+                                  <a>
+                                  Ver más
+                                  </a>
+                                </Link>
+                              </div>
+                            </td>
+                          </tr>
+                          )
+                        })}
                       </tbody>
                     </table>
                   </div>
