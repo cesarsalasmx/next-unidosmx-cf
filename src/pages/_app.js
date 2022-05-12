@@ -10,19 +10,13 @@ import "../assets/css/main-login.css";
 import "../assets/sass/dashboard/chartist.scss";
 import "../assets/sass/dashboard/app.scss"
 import "../assets/css/main-login.css";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-
-const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
-    cache: new InMemoryCache(),
-});
+import ApolloClient from "../services/apollo";
+import { ApolloProvider } from "@apollo/client";
 
 function MyApp({ Component, pageProps }) {
     return (  
-      <ApolloProvider client={client}>
-        <>
-          <Component {...pageProps} />
-        </>
+      <ApolloProvider client={ApolloClient}>
+        <Component {...pageProps} />
       </ApolloProvider>
     )
   }

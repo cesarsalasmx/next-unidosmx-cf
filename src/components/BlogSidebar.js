@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
-const BlogSidebar = () => {
+const BlogSidebar = ({post}) => {
   return (
     <div className="sidebar">
       <div className="sidebar__single sidebar__post">
         <h3 className="sidebar__title">Participa en este proyecto</h3>
         <div className="sidebar__post-wrap">
           <div className="sidebar__post__single">
-          <Link href="/donar">
+          <Link href={`/donar/${post}`}>
           <a className="thm-btn">
               <span>Ser donante</span>
             </a>

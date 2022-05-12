@@ -145,6 +145,3 @@ const NotificationDropdown = props => {
 
 export default withTranslation()(NotificationDropdown)
 
-NotificationDropdown.propTypes = {
-  t: PropTypes.any
-}

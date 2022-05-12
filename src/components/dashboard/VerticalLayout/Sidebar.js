@@ -14,13 +14,5 @@ const Sidebar = props => {
   )
 }
 
-Sidebar.propTypes = {
-  type: PropTypes.string,
-}
 
-// const mapStatetoProps = state => {
-//   return {
-//     layout: state.Layout,
-//   }
-// }
 export default Sidebar

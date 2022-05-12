@@ -3443,3 +3443,10 @@ border-bottom: #a5a9bb solid 1px;
     transform: rotate(360deg);
   }
 }
+.message_error{
+  border-color: #CB4335;
+  background-color: #F5B7B1;
+  color: #78281F;
+  padding: 10px;
+  border: solid 1px;
+}

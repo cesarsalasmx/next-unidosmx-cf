@@ -1,20 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Form, Button, FormGroup, Label, Input } from "reactstrap";
 import logoSm from "../assets/images/unidos-mx-logo-pruple.png";
 import loginImg from "../assets/images/resources/login-img.png";
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
+import Router, { useRouter } from "next/router";
+import {gql, useMutation} from "@apollo/client";
+const LOGIN = gql`
+mutation loginUser($email: String!,$password: String!){
+  loginUserMutation(email: $email ,password:$password){
+    success,
+    message,
+    token
+  }
+}
+`;
 const Login = () => {
-  // handleValidSubmit
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const router = useRouter();
+  const [loginUser, {data,loading,errors,reset}] = useMutation(LOGIN);
+  useEffect(()=> {
+    if(data){
+      setErrorMessage(data.loginUserMutation.message)
+      if(data.loginUserMutation.success){
+        localStorage.setItem('token',data.loginUserMutation.token);
+        router.push(`/dashboard`);
+      }
+    }
+
+  },[data]);
+  const [errorMessage, setErrorMessage ] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+  const [isAuthenticated, setIsAuthenticated] = useState(()=>{
+    const token = null;
+    if (typeof window !== "undefined") {
+      token = localStorage.getItem('token');
+    }
+    let isLogin = true
+    try{
+      isLogin = decode(token);
+    }catch(e){
+      return false
+    }
+    return isLogin
+  });
+  useEffect(()=>{
+    if(isAuthenticated){
+      Router.push('/dashboard')
+    }
+  },[]);
   return (
     <div className="form-body">
       <div className="website-logo">
@@ -44,7 +81,10 @@ const Login = () => {
                 </Link>
                 <Link href="/registro"><a>Registro</a></Link>
               </div>
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={(e) => {
+                e.preventDefault();
+                loginUser({variables:{email,password}});
+              }}>
                 <FormGroup>
                   <Label>Correo Electrónico</Label>
                   <Input
@@ -65,11 +105,13 @@ const Login = () => {
                   block
                   size="lg"
                   type="submit"
-                  disabled={!validateForm()}
                 >
                   Iniciar Sesión
                 </Button>
               </Form>
+            <div>
+              {errorMessage ? <div className="message_error"> {errorMessage} </div> : null}
+            </div>
             </div>
           </div>
         </div>

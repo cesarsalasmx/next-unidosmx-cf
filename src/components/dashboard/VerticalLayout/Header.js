@@ -5,14 +5,15 @@ import { Form, Dropdown, DropdownMenu, DropdownItem, DropdownToggle, Input, Butt
 
 import Link from "next/link";
 import Image from 'next/image';
+import Router, { useRouter } from 'next/router';
 // Import menuDropdown
 // import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown"
 // import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown"
 // import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu"
 
-import logodarkImg from "../../../assets/images/unidos-mx-logo-pruple.png"
-import logosmImg from "../../../assets/images/unidos-mx-logo-pruple.png"
+
 import logolightImg from "../../../assets/images/unidos-mx-logo-pruple.png"
+import { use } from 'echarts';
 
 
 // Redux Store
@@ -23,36 +24,16 @@ import logolightImg from "../../../assets/images/unidos-mx-logo-pruple.png"
 // } from "../../../store/actions"
 
 const Header = props => {
-  const [search, setsearch] = useState(false)
-  const [singlebtn, setSinglebtn] = useState(false)
+  const router = useRouter();
+  const [search, setsearch] = useState(false);
+  const [singlebtn, setSinglebtn] = useState(false);
+  const [userId, SetUserId ] = useState(false);
+  const [publishbtn, setPublishbtn] = useState(false);
 
-  function toggleFullscreen() {
-    if (
-      !document.fullscreenElement &&
-      /* alternative standard method */ !document.mozFullScreenElement &&
-      !document.webkitFullscreenElement
-    ) {
-      // current working methods
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen()
-      } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen()
-      } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen(
-          Element.ALLOW_KEYBOARD_INPUT
-        )
-      }
-    } else {
-      if (document.cancelFullScreen) {
-        document.cancelFullScreen()
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen()
-      } else if (document.webkitCancelFullScreen) {
-        document.webkitCancelFullScreen()
-      }
-    }
+  const logout = () => {
+    localStorage.removeItem('token');
+    Router.push(`/dashboard`);
   }
-
   function tToggle() {
     var body = document.body;
     if ( window !== "undefined") {
@@ -92,19 +73,16 @@ const Header = props => {
             <div className="d-none d-sm-block">
 
               <Dropdown
-                isOpen={singlebtn}
-                toggle={() => setSinglebtn(!singlebtn)}
+                isOpen={publishbtn}
+                toggle={() => setPublishbtn(!publishbtn)}
                 className="pt-3 d-inline-block"
               >
                 <DropdownToggle className="btn btn-secondary" caret>
                   Publicar <i className="mdi mdi-chevron-down"></i>
                 </DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem><Link href={'/dashboard/agregar/causa'}><a>Proyecto</a></Link></DropdownItem>
-                  <DropdownItem><Link href={'/dashboard/agregar/post'}><a>Post de blog</a></Link></DropdownItem>
-                  <DropdownItem><Link href={'/dashboard/agregar/usuario'}><a>Crear usuario</a></Link></DropdownItem>
-                  <div className="dropdown-divider"></div>
-                  <DropdownItem>Cerrar sesión</DropdownItem>
+                  <Link href={'/dashboard/agregar/causa'}><DropdownItem>Proyecto</DropdownItem></Link>
+                  <Link href={'/dashboard/agregar/usuario'}><DropdownItem>Crear usuario</DropdownItem></Link>
                 </DropdownMenu>
               </Dropdown>
 
@@ -112,17 +90,22 @@ const Header = props => {
           </div>
 
           <div className="d-flex">
-            <form className="app-search d-none d-lg-block">
-              <div className="position-relative">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder={"Buscar"}
-                />
-                <span className="fa fa-search"></span>
-              </div>
-            </form>
-
+            <div>
+            <Dropdown
+                isOpen={singlebtn}
+                toggle={() => setSinglebtn(!singlebtn)}
+                className="pt-3 d-inline-block"
+              >
+                <DropdownToggle className="btn btn-secondary" caret>
+                  Perfil <i className="mdi mdi-chevron-down"></i>
+                </DropdownToggle>
+                <DropdownMenu>
+                <Link href={`/dashboard/perfil/${userId}`}><DropdownItem>Ver perfil</DropdownItem></Link>
+                  <div className="dropdown-divider"></div>
+                  <DropdownItem onClick={logout}>Cerrar sesión</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
             <Dropdown
               className="d-inline-block d-lg-none ms-2"
               onClick={() => {
@@ -181,16 +164,6 @@ const Header = props => {
       </header>
     </React.Fragment>
   )
-}
-
-Header.propTypes = {
-  changeSidebarType: PropTypes.func,
-  leftMenu: PropTypes.any,
-  leftSideBarType: PropTypes.any,
-  showRightSidebar: PropTypes.any,
-  showRightSidebarAction: PropTypes.func,
-  t: PropTypes.any,
-  toggleLeftmenu: PropTypes.func
 }
 
 // const mapStatetoProps = state => {

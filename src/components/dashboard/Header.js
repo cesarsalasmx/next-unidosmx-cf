@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import LogoImage from "../../assets/images/unidos-mx-logo-pruple.png";
 const Header = () => {
+    
     return (
         <div className="main-header">
         <div className="d-flex">

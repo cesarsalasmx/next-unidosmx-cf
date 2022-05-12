@@ -9,7 +9,7 @@ const donations=[
 export default async function handlerCheckout(req, res, props) {
   if (req.method === 'POST') {
     try {
-      const amount = donations.filter(donations => donations.amount == req.body.PRICE_ID)
+      const amount = donations.filter(donations => donations.amount == req.body.amount)
       
       // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create({

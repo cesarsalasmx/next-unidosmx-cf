@@ -23,7 +23,7 @@ const Dashboard = props => {
     setMenu(!menu)
   };
   const handleFormChange = () => {}
-  const today = new Date().toDateString();
+
   return (
     <React.Fragment>
        <Layout>

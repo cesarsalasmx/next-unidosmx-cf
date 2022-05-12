@@ -3,11 +3,10 @@ import { Container, Row } from "reactstrap";
 import BlockTitle from "./BlockTitle";
 import BlogPost from "./BlogPost";
 
-import causeImage3 from "../assets/images/causas/Reforesta.png";
-
 const BlogHome = (props) => {
   //const {causes, setCauses} = useState();
   const {causes} = props
+  console.log(causes[0])
   return (
     <section className="blog-one" id="actividades">
       <Container>
@@ -17,14 +16,14 @@ const BlogHome = (props) => {
           titleText={`Causas sociales de \nla comunidad`}
         />
         <Row>
-          {causes.AllPostsQuery.map((data) => {
+          {causes[0].AllPostsQuery.map((data) => {
             return(
               <BlogPost
-                postImage={causeImage3}
+                postImage={`/uploads/${data.image}`}
                 postTitle={data.title}
                 postDate={data.date}
                 postLink={`/causas/${data.slug}`}
-                key={props.key}
+                key={data.id}
               />
             );
           })}

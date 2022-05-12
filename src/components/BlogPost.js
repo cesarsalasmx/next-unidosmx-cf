@@ -9,7 +9,7 @@ const BlogPost = (props) => {
         <div className="blog-one__image">
           <Link href={props.postLink}>
             <a>
-              <Image src={props.postImage} className="causes-img-home" alt="awesome post" />
+              <Image src={props.postImage} className="causes-img-home" alt="awesome post" height={400} width={400}/>
             </a>
           </Link>
         </div>

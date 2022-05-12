@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
 import React, { Component } from "react"
-
+import Router from 'next/router';
+import decode from 'jwt-decode';
 // import { withRouter } from "react-router-dom"
 // import {
 //   changeLayout,
@@ -18,11 +18,13 @@ const Sidebar = dynamic(() => import("./Sidebar"), {ssr:false});
 import Rightbar from "../CommonForBoth/Rightbar"
 
 class Layout extends Component {
+  
   constructor(props) {
     super(props)
     this.state = {
       isMobile: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent),
     }
+    console.log(props)
     this.toggleMenuCallback = this.toggleMenuCallback.bind(this)
   }
 
@@ -54,43 +56,40 @@ class Layout extends Component {
       this.props.changeSidebarType("default", this.state.isMobile)
     }
   }
-
+  
+  
   render() {
-    return (
-      <React.Fragment>
-        <div id="layout-wrapper">
-          <Header toggleMenuCallback={this.toggleMenuCallback} />
-          <Sidebar
-            theme={this.props.leftSideBarTheme}
-            type={this.props.leftSideBarType}
-            isMobile={this.state.isMobile}
-          />
-          <div className="main-content">{this.props.children}</div>
+    const isAuthenticated = ()=>{
+      const token = localStorage.getItem('token')
+      let isValid = true
+      try{
+        isValid = decode(token);
+      }catch(e){
+        isValid = false;
+      }
+      return isValid;
+    };
+    if(isAuthenticated()){
+      return (
         
-        </div>
-        {this.props.showRightSidebar ? <Rightbar /> : null}
-      </React.Fragment>
-    )
+        <React.Fragment>
+          <div id="layout-wrapper">
+            <Header toggleMenuCallback={this.toggleMenuCallback} />
+            <Sidebar
+              theme={this.props.leftSideBarTheme}
+              type={this.props.leftSideBarType}
+              isMobile={this.state.isMobile}
+            />
+            <div className="main-content">{this.props.children}</div>
+          
+          </div>
+          {this.props.showRightSidebar ? <Rightbar /> : null}
+        </React.Fragment>
+      )
+    }else{
+      return(Router.push('/'))
+    }
+    
   }
 }
-
-Layout.propTypes = {
-  changeLayoutWidth: PropTypes.func,
-  changeSidebarTheme: PropTypes.func,
-  changeSidebarType: PropTypes.func,
-  changeTopbarTheme: PropTypes.func,
-  children: PropTypes.object,
-  layoutWidth: PropTypes.any,
-  leftSideBarTheme: PropTypes.any,
-  leftSideBarType: PropTypes.any,
-  location: PropTypes.object,
-  showRightSidebar: PropTypes.any,
-  topbarTheme: PropTypes.any
-}
-
-// const mapStatetoProps = state => {
-//   return {
-//     ...state.Layout,
-//   }
-// }
 export default Layout;

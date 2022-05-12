@@ -20,7 +20,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import {gql, useMutation } from "@apollo/client";
 const Layout = dynamic(() => import("../../../components/dashboard/VerticalLayout"),{ ssr: false});
-const ADD_CAUSE=gql`
+const ADD_USER=gql`
 mutation AddUser(
   $first_name: String!,
   $last_name: String!,
@@ -85,7 +85,7 @@ const Dashboard = props => {
     modalResult = result;
     setModal(!modal);
   }
-  const [ addUser, {data, loading, error, reset} ] = useMutation(ADD_CAUSE,{
+  const [ addUser, {data, loading, error, reset} ] = useMutation(ADD_USER,{
     onCompleted:() => {
       toggle("success");
     },
@@ -93,11 +93,10 @@ const Dashboard = props => {
       toggle("error");
     }
   });
-  console.log(error);
   const handleFormChange = (event,inputName) => {
     variables[inputName] = event.target.value;
   }
-  const today = new Date().toDateString();
+
   return (
     <React.Fragment>
        <Layout>
@@ -117,7 +116,6 @@ const Dashboard = props => {
                     <h4 className="card-title mb-4">Agregar usuario:</h4>
                     <Form onSubmit={e => {
                       e.preventDefault();
-                      console.log(variables)
                       addUser({variables});
                     }}>
                         <FormGroup>

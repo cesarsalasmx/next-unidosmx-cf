@@ -5,7 +5,6 @@ import LogoImage from "../assets/images/unidos-mx-logo-pruple.png";
 import Link from "next/link";
 const HeaderHome = (props) => {
   const [sticky, setSticky] = useState(false);
-
   const handleScroll = () => {
       if (window.scrollY > 70) {
         setSticky(true);
@@ -40,8 +39,8 @@ const HeaderHome = (props) => {
           <NavLinks />
         </div>
         <div className="main-nav__right">
-          <Link href="/iniciar-sesion" className={`thm-btn ${props.btnClass}`}>
-            <a className={`thm-btn ${props.btnClass}`}><span>Iniciar sesión</span></a>
+          <Link href={props.isLogin?"/dashboard":"/iniciar-sesion"} className={`thm-btn ${props.btnClass}`}>
+            <a className={`thm-btn ${props.btnClass}`}><span>{props.isLogin?"Dashboard":"Iniciar sesión"}</span></a>
           </Link>
         </div>
       </div>

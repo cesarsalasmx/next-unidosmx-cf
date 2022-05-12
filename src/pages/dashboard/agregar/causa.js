@@ -41,13 +41,11 @@ mutation AddPost(
 const Dashboard = props => {
   const router = useRouter();
   let modalResult = "success";
-  let slug = "";
-  let variables = {
-    "content": "",
-    "title": "",
-    "image": "",
-    "category": "",
-  }
+  const [content, setContent ] = useState("");
+  const [title, setTitle ] = useState("");
+  const [image, setImage ] = useState("");
+  const [imageFile,setImageFile] = useState(null);
+  const [category, setCategory ] = useState("");
   const modalContent = {
     "success": {
       title: "Causa creada",
@@ -82,9 +80,28 @@ const Dashboard = props => {
       toggle("error");
     }
   });
-  const handleFormChange = (event,inputName) => {
-    variables[inputName] = event.target.value;
-  }
+  
+  //Image
+  const [createObjectURL, setCreateObjectURL] = useState(null);
+
+  const uploadToClient = async (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const i = event.target.files[0];
+      setImage(i.name);
+      setImageFile(i);
+      setCreateObjectURL(URL.createObjectURL(i));
+    }
+  };
+
+  const uploadToServer = async (event) => {        
+    const body = new FormData();
+    body.append("file", imageFile);  
+    addCause({variables:{content,title,image,category},});  
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body
+    });
+  };
   return (
     <React.Fragment>
        <Layout>
@@ -104,7 +121,7 @@ const Dashboard = props => {
                     <h4 className="card-title mb-4">Publicar para recibir donaciones:</h4>
                     <Form onSubmit={e => {
                       e.preventDefault();
-                      addCause({variables});
+                      uploadToServer(e);                      
                     }}>
                         <FormGroup>
                             <Label className="input_public_post_form">Título</Label>
@@ -112,7 +129,7 @@ const Dashboard = props => {
                             type="text"
                             name="title"
                             placeholder="Título"
-                            onChange={(event)=>handleFormChange(event,"title")}
+                            onChange={(event)=>setTitle(event.target.value)}
                             required="required"
                             
                             />
@@ -121,7 +138,16 @@ const Dashboard = props => {
                             type="textarea"
                             name="content"
                             placeholder="Descripción"
-                            onChange={(event)=>handleFormChange(event,"content")}
+                            onChange={(event)=>setContent(event.target.value)}
+                            required="required"
+                            
+                            />
+                            <Label className="input_public_post_form">Categoría</Label>
+                            <Input 
+                            type="text"
+                             name="category"
+                            placeholder="categoría"
+                            onChange={(event)=>setCategory(event.target.value)}
                             required="required"
                             
                             />
@@ -129,19 +155,10 @@ const Dashboard = props => {
                             <Input 
                             type="file"
                             name="image"
-                            onChange={(event)=>handleFormChange(event,"image")}
+                            onChange={(event)=>uploadToClient(event)}
                             
                             required="required"
                             accept="image/*"
-                            />
-                            <Label className="input_public_post_form">Categoría</Label>
-                            <Input 
-                            type="text"
-                             name="category"
-                            placeholder="categoría"
-                            onChange={(event)=>handleFormChange(event,"category")}
-                            required="required"
-                            
                             />
                             <Button type="submit" className="input_public_post_form">Publicar causa</Button>
                         </FormGroup>

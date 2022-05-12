@@ -24,9 +24,6 @@ class NonAuthLayout extends Component {
   }
 }
 
-NonAuthLayout.propTypes = {
-  children: PropTypes.any,
-  location: PropTypes.object
-}
+
 
 export default withRouter(NonAuthLayout)

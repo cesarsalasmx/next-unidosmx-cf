@@ -295,19 +295,7 @@ const RightSidebar = props => {
   )
 }
 
-RightSidebar.propTypes = {
-  changeLayout: PropTypes.func,
-  changeLayoutWidth: PropTypes.func,
-  changeSidebarTheme: PropTypes.func,
-  changeSidebarType: PropTypes.func,
-  changeTopbarTheme: PropTypes.func,
-  layoutType: PropTypes.any,
-  layoutWidth: PropTypes.any,
-  leftSideBarTheme: PropTypes.any,
-  leftSideBarType: PropTypes.any,
-  showRightSidebarAction: PropTypes.func,
-  topbarTheme: PropTypes.any
-}
+
 
 // const mapStateToProps = state => {
 //   return { ...state.Layout }

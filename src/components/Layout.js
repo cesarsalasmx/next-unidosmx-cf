@@ -3,12 +3,12 @@ import Head from "next/head";
 import { Link as ScrollLink } from "react-scroll";
 import { gql, useMutation } from "@apollo/client";
 
+
 const ADD_SESSION = gql`
 mutation AddSesion(
   $page_name: String!,
   $ip: String!,
   $browser: String!,
-  $date: Date!,
   $device: String!,
   $referrer: String!,
 ){
@@ -16,7 +16,6 @@ mutation AddSesion(
     page_name: $page_name,
     ip: $ip,
     browser: $browser,
-    date: $date,
     device: $device,
     referrer: $referrer,
   ){
@@ -24,14 +23,36 @@ mutation AddSesion(
   }
 }
 `;
-
-const getIP = async () => {
-  const response = await fetch(`https://api.ipify.org/?format=json`);
-  const {ip} = await response.json();
-  return ip;
-}
 const Layout = (props) => {
- 
+  
+  const [ addSesion, {data, loading, error, reset} ] = useMutation(ADD_SESSION);
+  useEffect(()=>{
+    try{
+      const getSesionVaribales = async () => {
+      const response={};
+      try{
+        response = await fetch(`https://api.ipify.org/?format=json`);
+      }catch(err){response={}}
+        const {ip} = await response.json();
+        return {
+          page_name: window.location.href,
+          device: window.navigator.userAgent,
+          browser: window.navigator.appCodeName,
+          referrer: document.referre ? document.referre : "",
+          ip: ip,
+        }
+    }
+    getSesionVaribales()
+      .then((variables)=>{
+        addSesion({variables});
+      })
+      .catch(console.err);
+    }catch(e){
+      console.log(e);
+    }
+
+    },[])
+
   const [scrollTop, setScrollTop] = useState(false);
   const handleScrollTop = () => {
     if (typeof window !== "undefined") {

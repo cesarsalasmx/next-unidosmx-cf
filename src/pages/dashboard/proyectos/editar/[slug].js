@@ -142,7 +142,6 @@ const Dashboard = props => {
   }
   const handleFormChange = (event,inputName) => {
     variables[inputName] = event.target.value;
-    console.log(variables);
   }
   if (loading) return <div>Loading</div>
   return (

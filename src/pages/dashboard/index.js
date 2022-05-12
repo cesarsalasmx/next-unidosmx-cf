@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React, {useState} from "react";
 import {
   Container,
@@ -623,10 +622,6 @@ const Dashboard = props => {
       </Layout>
     </React.Fragment>
   )
-}
-
-Dashboard.propTypes = {
-  t: PropTypes.any
 }
 
 export default Dashboard;

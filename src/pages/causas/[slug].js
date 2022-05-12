@@ -44,7 +44,7 @@ const BlogPostPage = () => {
             <div>
                 <div className="blog-details__main">
                     <div className="blog-details__image">
-                    <Image src={BlogDetailsImage} alt="awesome post" />
+                    <Image src={`/uploads/${data.PostQuery.image}`} alt="awesome post" height={500} width={600} />
                     </div>
                     <div className="blog-details__content">
                     <div className="blog-one__meta">
@@ -99,7 +99,7 @@ const BlogPostPage = () => {
                 </div>
           </Col>
           <Col lg={4}>
-            <BlogSidebar />
+            <BlogSidebar post={data.PostQuery.id}/>
           </Col>
         </Row>
       </Container>

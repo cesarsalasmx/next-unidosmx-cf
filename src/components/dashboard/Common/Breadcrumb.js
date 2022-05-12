@@ -54,9 +54,5 @@ const Breadcrumb = props => {
   )
 }
 
-Breadcrumb.propTypes = {
-  breadcrumbItem: PropTypes.string,
-  title: PropTypes.string
-}
 
 export default Breadcrumb
